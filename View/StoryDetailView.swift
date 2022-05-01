@@ -9,39 +9,44 @@ import SwiftUI
 
 struct StoryDetailView: View {
     @Binding var showModal:Bool
+    @Binding var storyTitle:String
+    @Binding var storyContribute:[String]
+    @Binding var storyImage:String
     
     var CARD_WIDTH = UIScreen.main.bounds.width
-    var CARD_HEIGHT = UIScreen.main.bounds.height/2
+    var CARD_HEIGHT = UIScreen.main.bounds.height/3 + 50
     
     var body: some View {
         ZStack {
             VStack{
                 ScrollView {
-                    Image("this")
+                    Image(storyImage)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                     VStack {
                         HStack {
-                            Text("MC1 멘토링 앱")
+                            Text(storyTitle)
                                 .font(.largeTitle)
                             Spacer()
                         }
                         
                         HStack {
-                            Text("개발, 디자인, 기획")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                            ForEach(storyContribute, id:\.self){con in
+                                Text(con)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
                             Spacer()
                         }
                     }.padding()
                     
                     Divider()
                     
-                    Text("asajsdhfalkjsdhflakjsdfhlakjsd")
+                    Text("asajsdhfalkjsdhflakjsdfhlakjsd\nsdfasdfasdfasfas")
                     
                     Spacer()
                 }
-                .ignoresSafeArea()
+                
             }
             
             VStack{
@@ -69,14 +74,15 @@ struct StoryDetailView: View {
                 }
                 Spacer()
             }
-            .ignoresSafeArea()
         }
+        .ignoresSafeArea()
         .statusBar(hidden: true)
     }
 }
 
-struct StoryDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        StoryDetailView(showModal: .constant(true))
-    }
-}
+//struct StoryDetailView_Previews: PreviewProvider {
+//    var story:Story
+//    static var previews: some View {
+//        StoryDetailView(showModal: .constant(true))
+//    }
+//}

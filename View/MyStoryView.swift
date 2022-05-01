@@ -8,14 +8,51 @@
 import SwiftUI
 
 struct MyStoryView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
+    @State var showModal:Bool = false
+    
     var body: some View {
-        VStack {
-            List{
-                ForEach(0..<5, id:\.self){_ in
-                    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            ScrollView {
+                ForEach(stories){story in
+                    Button(action: {
+                        
+                    }, label: {
+                        VStack {
+                            Text(story.title ?? "There's nothing")
+                            ForEach(story.contribute!, id:\.self){contri in
+                                Text(contri)
+                            }
+                        }
+                    })
+                    Divider()
                 }
             }
-            Spacer()
+            
+            VStack {
+                Spacer()
+                HStack{
+                    Spacer()
+                    ZStack {
+                        Circle().frame(width: 30, height: 30)
+                            .foregroundColor(.blue)
+                        
+                        Button(action: {
+                            showModal.toggle()
+                        }, label: {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                        })
+                        .foregroundColor(.white)
+                        .sheet(isPresented: $showModal){
+                            WriteStoryView(showModal: $showModal)
+                        }
+                    }
+                }
+                .padding()
+            }
         }
     }
 }

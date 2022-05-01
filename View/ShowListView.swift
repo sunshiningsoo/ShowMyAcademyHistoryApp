@@ -8,26 +8,31 @@
 import SwiftUI
 
 struct ShowListView: View {
-    @State private var imgWidth = UIScreen.main.bounds.width
-    @State private var imgHieght = UIScreen.main.bounds.height
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
     @State var showModal:Bool = false
+    @State var storyTitle = ""
+    @State var storyContribute = [""]
+    @State var storyImage = ""
     
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
-                ForEach(0..<5){_ in
+                ForEach(stories, id:\.self){story in
                     Button(action: {
+                        self.storyTitle = story.title ?? ""
+                        self.storyImage = story.image ?? ""
+                        self.storyContribute = story.contribute ?? [""]
                         showModal.toggle()
                     }, label: {
-                        RectangleCard()
-                            .fullScreenCover(isPresented: $showModal){
-                                StoryDetailView(showModal: $showModal)
-                            }
+                        RectangleCard(story: story)
                     })
                 }
+                .fullScreenCover(isPresented: $showModal){
+                    StoryDetailView(showModal: self.$showModal, storyTitle:$storyTitle, storyContribute:$storyContribute, storyImage:$storyImage)
+                }   
             }
         }
-        
     }
 }
 
