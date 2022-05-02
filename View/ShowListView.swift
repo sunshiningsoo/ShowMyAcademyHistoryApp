@@ -8,34 +8,45 @@
 import SwiftUI
 
 struct ShowListView: View {
-    @Environment(\.managedObjectContext) var moc
+    //    @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
+    
     @State var showModal:Bool = false
     @State var storyTitle = ""
     @State var storyContribute = [""]
     @State var storyImage = ""
+    @State var storyContext = ""
     
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
                 ForEach(stories, id:\.self){story in
                     Button(action: {
-                        self.storyTitle = story.title ?? ""
                         self.storyImage = story.image ?? ""
+                        self.storyTitle = story.title ?? ""
                         self.storyContribute = story.contribute ?? [""]
+                        self.storyContext = story.context ?? ""
+                        
                         showModal.toggle()
                     }, label: {
                         RectangleCard(story: story)
                     })
+                    
+                    //                    .fullScreenCover(isPresented: $showModal){
+                    //                        StoryDetailView(showModal:$showModal, story:story)
+                    //                    }
+                    // 인자를 이렇게 던져 주려고 하는데 story값의 최신화가 계속 안된다. -> 처음 값만 계속 저장된다.
+                    // 이렇게 반복해주는 것보다는 바깥에 한번 감싸는 것이 훨씬 날듯
+                    
                 }
                 .fullScreenCover(isPresented: $showModal){
-                    StoryDetailView(showModal: self.$showModal, storyTitle:$storyTitle, storyContribute:$storyContribute, storyImage:$storyImage)
-                }   
+                    StoryDetailView(showModal: self.$showModal, storyTitle:$storyTitle, storyContribute:$storyContribute, storyImage:$storyImage, storyContext:$storyContext)
+                }
             }
         }
     }
 }
-
+    
 struct RectangleCardViewInShow_Previews: PreviewProvider {
     static var previews: some View {
         ShowListView()

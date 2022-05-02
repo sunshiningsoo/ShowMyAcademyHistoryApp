@@ -12,6 +12,7 @@ struct StoryDetailView: View {
     @Binding var storyTitle:String
     @Binding var storyContribute:[String]
     @Binding var storyImage:String
+    @Binding var storyContext:String
     
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3 + 50
@@ -42,7 +43,8 @@ struct StoryDetailView: View {
                     
                     Divider()
                     
-                    Text("asajsdhfalkjsdhflakjsdfhlakjsd\nsdfasdfasdfasfas")
+                    Text(storyContext)
+                        .padding()
                     
                     Spacer()
                 }

@@ -9,19 +9,18 @@ import SwiftUI
 
 struct WriteStoryView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
+//    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
     @Binding var showModal:Bool
     
     var randomImg:[String] = ["this", "newImg"]
-    
     @State var title:String = ""
-    @State var contribute:String = "개발"
-    var contributeList:[String] = ["개발", "기획", "디자인"]
     @State var chosenCon:[String] = []
+    var contributeList:[String] = ["개발", "기획", "디자인"]
+    @State var contribute:String = "개발"
+    @State var context:String = ""
     
     var body: some View {
         VStack {
-            Text("This is writing page")
             Form{
                 Section{
                     TextField(text: $title, label: {
@@ -36,6 +35,13 @@ struct WriteStoryView: View {
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                 }
+                
+                Section{
+                    TextField(text:$context, label: {
+                        Text("내용을 적으세요")
+                    })
+                }
+                
             }
             
             
@@ -46,7 +52,14 @@ struct WriteStoryView: View {
                 someStory.image = randomImg.randomElement()
                 chosenCon.append(contribute)
                 someStory.contribute = chosenCon
-                try? moc.save()
+                someStory.context = context
+                
+                 try? moc.save()
+                // 위의 경우에는 DataController 객체를 환경설정되어 있는 곳에서 객체를 만든 후에 진행했고
+                // 같은 객체로 진행해야 저장이 된다.
+                
+                // try? DataController().container.viewContext.save()
+                // 위의 경우에는 직접 DataController 클래스를 이용해서 저장을 해주도록 한다.
                 
                 showModal.toggle()
             }, label: {

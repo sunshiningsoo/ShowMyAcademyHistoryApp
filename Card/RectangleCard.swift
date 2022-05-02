@@ -10,28 +10,43 @@ import SwiftUI
 struct RectangleCard: View {
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3
+    var CORNER_RADIUS = CGFloat(20)
     var story:Story
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: CORNER_RADIUS)
                 .padding()
                 .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
-                .shadow(radius: 20, y:10)
+                .shadow(radius: CORNER_RADIUS, y:CORNER_RADIUS/2)
                 .opacity(0.8)
             Image(story.image ?? "")
                 .resizable()
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth:5).opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: CORNER_RADIUS))
+                .overlay(RoundedRectangle(cornerRadius: CORNER_RADIUS).stroke(Color.black, lineWidth:5).opacity(0.1))
                 .padding()
                 .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
             VStack{
-                HStack{
-                    Text(story.title ?? "")
-                        .font(.title)
-                    Spacer()
+                VStack {
+                    HStack{
+                        Text(story.title ?? "")
+                            .font(.title)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(story.contribute?.randomElement() ?? "")
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                        Spacer()
+                        
+                    }
                 }
-            }.padding()
+                .padding()
+                
+                Spacer()
+            }
+            .padding()
         }
     }
 }

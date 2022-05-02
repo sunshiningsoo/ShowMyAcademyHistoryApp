@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyStoryView: View {
-    @Environment(\.managedObjectContext) var moc
+//    @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
     @State var showModal:Bool = false
     
@@ -37,6 +37,7 @@ struct MyStoryView: View {
                     ZStack {
                         Circle().frame(width: 30, height: 30)
                             .foregroundColor(.blue)
+                            .opacity(0.8)
                         
                         Button(action: {
                             showModal.toggle()
