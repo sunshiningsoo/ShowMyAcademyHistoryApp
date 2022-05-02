@@ -9,10 +9,11 @@ import SwiftUI
 
 struct StoryDetailView: View {
     @Binding var showModal:Bool
-    @Binding var storyTitle:String
-    @Binding var storyContribute:[String]
-    @Binding var storyImage:String
-    @Binding var storyContext:String
+//    @Binding var storyTitle:String
+//    @Binding var storyContribute:[String]
+//    @Binding var storyImage:String
+//    @Binding var storyContext:String
+    var story:StoryModel
     
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3 + 50
@@ -21,18 +22,18 @@ struct StoryDetailView: View {
         ZStack {
             VStack{
                 ScrollView {
-                    Image(storyImage)
+                    Image(story.image)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                     VStack {
                         HStack {
-                            Text(storyTitle)
+                            Text(story.title)
                                 .font(.largeTitle)
                             Spacer()
                         }
                         
                         HStack {
-                            ForEach(storyContribute, id:\.self){con in
+                            ForEach(story.contribute, id:\.self){con in
                                 Text(con)
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
@@ -43,7 +44,7 @@ struct StoryDetailView: View {
                     
                     Divider()
                     
-                    Text(storyContext)
+                    Text(story.context)
                         .padding()
                     
                     Spacer()

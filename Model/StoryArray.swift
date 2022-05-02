@@ -8,4 +8,4 @@
 import Foundation
 import SwiftUI
 
-var storyArray:[Story] = []
+var storyArray:[StoryModel] = []
