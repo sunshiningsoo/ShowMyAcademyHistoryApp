@@ -17,7 +17,7 @@ struct MyStoryView: View {
             ScrollView {
                 ForEach(stories){story in
                     Button(action: {
-                        
+//                        StoryDetailView(showModal: $showModal, story: storyArray.last!)
                     }, label: {
                         VStack {
                             Text(story.title ?? "There's nothing")

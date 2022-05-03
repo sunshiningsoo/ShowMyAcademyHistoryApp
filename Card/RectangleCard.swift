@@ -20,7 +20,7 @@ struct RectangleCard: View {
                 .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                 .shadow(radius: CORNER_RADIUS, y:CORNER_RADIUS/2)
                 .opacity(0.8)
-            Image(story.image ?? "")
+            Image(story.image  ?? "")
                 .resizable()
                 .clipShape(RoundedRectangle(cornerRadius: CORNER_RADIUS))
                 .overlay(RoundedRectangle(cornerRadius: CORNER_RADIUS).stroke(Color.black, lineWidth:5).opacity(0.1))
@@ -35,7 +35,7 @@ struct RectangleCard: View {
                         Spacer()
                     }
                     HStack {
-                        Text(story.contribute?.randomElement() ?? "")
+                        Text(story.contribute?.first ?? "")
                             .font(.subheadline)
                             .foregroundColor(.white)
                         Spacer()

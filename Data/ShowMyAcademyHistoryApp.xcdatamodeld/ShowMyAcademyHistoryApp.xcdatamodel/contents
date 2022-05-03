@@ -5,9 +5,10 @@
         <attribute name="contribute" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isShowing" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Story" positionX="-54" positionY="-9" width="128" height="118"/>
+        <element name="Story" positionX="-54" positionY="-9" width="128" height="133"/>
     </elements>
 </model>

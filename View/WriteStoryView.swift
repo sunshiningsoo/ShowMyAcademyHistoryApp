@@ -41,7 +41,6 @@ struct WriteStoryView: View {
                         Text("내용을 적으세요")
                     })
                 }
-                
             }
             
             
@@ -53,6 +52,7 @@ struct WriteStoryView: View {
                 chosenCon.append(contribute)
                 someStory.contribute = chosenCon
                 someStory.context = context
+                someStory.isShowing = false
                 
                  try? moc.save()
                 // 위의 경우에는 DataController 객체를 환경설정되어 있는 곳에서 객체를 만든 후에 진행했고

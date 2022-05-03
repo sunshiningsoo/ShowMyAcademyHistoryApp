@@ -7,10 +7,15 @@
 
 import Foundation
 
-struct StoryModel:Identifiable{
+struct StoryModel:Hashable, Identifiable{
     var id:UUID
-    var title:String
-    var contribute:[String]
-    var image:String
-    var context:String
+    var title:String // 제목
+    var contribute:[String] // 기여한 곳
+    var image:String // 이미지 이름
+    var context:String // 내용
+    var isShowing:Bool // 보여주기란
+    
+    mutating func chageShowing(){
+        return self.isShowing.toggle()
+    }
 }

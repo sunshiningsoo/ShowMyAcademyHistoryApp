@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.title)]) var stories: FetchedResults<Story>
     @State private var tabName = "보여주기"
-    var tabList:[String] = ["보여주기", "내글보기"]
+    var tabList:[String] = ["보여주기", "내글보기"]    
     
     var body: some View {
         VStack {
@@ -32,7 +32,10 @@ struct ContentView: View {
             }
             
         }
+
     }
+    
+
 }
 
 struct ContentView_Previews: PreviewProvider {
