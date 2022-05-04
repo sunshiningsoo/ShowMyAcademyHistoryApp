@@ -14,8 +14,5 @@ struct StoryModel:Hashable, Identifiable{
     var image:String // 이미지 이름
     var context:String // 내용
     var isShowing:Bool // 보여주기란
-    
-    mutating func chageShowing(){
-        return self.isShowing.toggle()
-    }
+
 }

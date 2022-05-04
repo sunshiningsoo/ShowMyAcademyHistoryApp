@@ -36,11 +36,16 @@ struct ShowListView: View {
                     // 인자를 이렇게 던져 주려고 하는데 story값의 최신화가 계속 안된다. -> 처음 값만 계속 저장된다.
                     // 이렇게 반복해주는 것보다는 바깥에 한번 감싸는 것이 훨씬 날듯
                 }
-                .fullScreenCover(isPresented: $showModal){
-                    //                let new:Int = storyArray.firstIndex(where: {$0.id == id}) ?? 0
-                    //                    StoryDetailView(showModal:$showModal, story:storyArray.last!)
-                    StoryDetailView(showModal:$showModal, story:storyArray[new])
-                }
+//                .fullScreenCover(isPresented: $showModal){
+//                    //                let new:Int = storyArray.firstIndex(where: {$0.id == id}) ?? 0
+//                    //                    StoryDetailView(showModal:$showModal, story:storyArray.last!)
+//                    StoryDetailView(showModal:$showModal, story:storyArray[new])
+//                }
+            }
+            .fullScreenCover(isPresented: $showModal){
+                //                let new:Int = storyArray.firstIndex(where: {$0.id == id}) ?? 0
+                //                    StoryDetailView(showModal:$showModal, story:storyArray.last!)
+                StoryDetailView(showModal:$showModal, story:storyArray[new])
             }
             .onAppear {
                 print("데이터 불러오는중")

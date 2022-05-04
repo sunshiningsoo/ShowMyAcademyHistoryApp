@@ -37,7 +37,7 @@ struct StoryDetailView: View {
                             FavButton(isSet:$story.isShowing, story:story)
                             
                             Button(action: {
-//                                self.story.chageShowing()
+                                
                             }, label: {
                                 Image(systemName: story.isShowing ? "star.fill" : "star")
                                     .foregroundColor(story.isShowing ? .yellow : .gray)
@@ -58,7 +58,7 @@ struct StoryDetailView: View {
                     
                     Divider()
                     
-                    Text(story.context ?? "")
+                    Text(story.context)
                         .padding()
                     
                     Spacer()
