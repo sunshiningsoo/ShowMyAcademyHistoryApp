@@ -34,7 +34,7 @@ struct StoryDetailView: View {
                             Text(story.title)
                                 .font(.largeTitle)
                             
-                            FavButton(isSet:$story.isShowing, story:story)
+//                            FavButton(isSet:$story.isShowing, story:story)
                             
                             Button(action: {
                                 

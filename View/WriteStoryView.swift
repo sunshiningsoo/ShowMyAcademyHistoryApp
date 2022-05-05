@@ -12,7 +12,8 @@ struct WriteStoryView: View {
 //    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
     @Binding var showModal:Bool
     
-    var randomImg:[String] = ["this", "newImg"]
+//    var randomImg:[String] = ["this", "newImg"]
+    @State var imageName:String = ""
     @State var title:String = ""
     @State var chosenCon:[String] = []
     var contributeList:[String] = ["개발", "기획", "디자인"]
@@ -41,6 +42,12 @@ struct WriteStoryView: View {
                         Text("내용을 적으세요")
                     })
                 }
+                
+                Section{
+                    TextField(text:$imageName, label: {
+                        Text("이미지 이름은?")
+                    })
+                }
             }
             
             
@@ -48,7 +55,7 @@ struct WriteStoryView: View {
                 let someStory = Story(context: moc)
                 someStory.id = UUID()
                 someStory.title = title
-                someStory.image = randomImg.randomElement()
+                someStory.image = imageName
                 chosenCon.append(contribute)
                 someStory.contribute = chosenCon
                 someStory.context = context

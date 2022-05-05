@@ -29,6 +29,8 @@ struct MyStoryView: View {
                                 Text(story.title)
                                     .font(.title2)
                                 Text(story.context)
+                                    .lineLimit(1)
+                                    .truncationMode(.tail) 
                                     .foregroundColor(.gray)
                                 
                             }

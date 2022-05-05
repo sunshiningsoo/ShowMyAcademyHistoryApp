@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShowListView: View {
-    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.image)]) var stories: FetchedResults<Story>
     @State var showModal:Bool = false
     @State var id:UUID = UUID()
     @State var new:Int = 0
@@ -26,7 +26,6 @@ struct ShowListView: View {
                         if storyArray.isEmpty{
                             
                         }
-                        
                         showModal.toggle()
                     }, label: {
                         RectangleCard(story: story)
@@ -36,13 +35,13 @@ struct ShowListView: View {
             
             .fullScreenCover(isPresented: $showModal){
 //                StoryDetailView(showModal:$showModal, story:storyArray.last!)
-                StoryDetailView(showModal:$showModal, story:storyArray[new])
+//                DispatchQueue.main.async {
+                    StoryDetailView(showModal:$showModal, story:storyArray[new])
+//            }
             }
             .onAppear {
                 print("데이터 불러오는중")
-                DispatchQueue.main.async {
-                    storyArray = dataFetchFromCoredata()
-                }
+                storyArray = dataFetchFromCoredata()
                 print("데이터 불러왔음")
             }
         }
