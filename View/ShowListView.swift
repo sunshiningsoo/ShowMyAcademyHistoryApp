@@ -35,8 +35,7 @@ struct ShowListView: View {
             }
             
             .fullScreenCover(isPresented: $showModal){
-                //                let new:Int = storyArray.firstIndex(where: {$0.id == id}) ?? 0
-                //                    StoryDetailView(showModal:$showModal, story:storyArray.last!)
+//                StoryDetailView(showModal:$showModal, story:storyArray.last!)
                 StoryDetailView(showModal:$showModal, story:storyArray[new])
             }
             .onAppear {

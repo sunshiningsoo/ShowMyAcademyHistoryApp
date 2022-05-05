@@ -15,16 +15,30 @@ struct MyStoryView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                ForEach(stories){story in
+                ForEach(storyArray){story in
                     Button(action: {
 //                        StoryDetailView(showModal: $showModal, story: storyArray.last!)
                     }, label: {
-                        VStack {
-                            Text(story.title ?? "There's nothing")
-                            ForEach(story.contribute!, id:\.self){contri in
+                        HStack {
+                            Image(story.image)
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(20)
+                                
+                            VStack(alignment:.leading) {
+                                Text(story.title)
+                                    .font(.title2)
+                                Text(story.context)
+                                    .foregroundColor(.gray)
+                                
+                            }
+                            Spacer()
+                            ForEach(story.contribute, id:\.self){contri in
                                 Text(contri)
                             }
                         }
+                        .foregroundColor(.black)
+                        .padding()
                     })
                     Divider()
                 }
