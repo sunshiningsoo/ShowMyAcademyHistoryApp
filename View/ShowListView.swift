@@ -32,22 +32,26 @@ struct ShowListView: View {
                     })
                 }
             }
-            
             .fullScreenCover(isPresented: $showModal){
 //                StoryDetailView(showModal:$showModal, story:storyArray.last!)
 //                DispatchQueue.main.async {
                     StoryDetailView(showModal:$showModal, story:storyArray[new])
 //            }
             }
-            .onAppear {
-                print("데이터 불러오는중")
-                storyArray = dataFetchFromCoredata()
-                print("데이터 불러왔음")
+            .task{
+                await storyArray = dataFetchFromCoredata()
             }
+            
+//            .onAppear {
+//                print("데이터 불러오는중")
+//                storyArray = dataFetchFromCoredata()
+//                print("데이터 불러왔음")
+//            }
+            
         }
     }
     
-    private func dataFetchFromCoredata() -> [StoryModel] {
+    private func dataFetchFromCoredata() async -> [StoryModel] {
         var tempStory: [StoryModel] = []
         for story in stories {
             let new = StoryModel(id: story.id!, title: story.title!, contribute: story.contribute!, image: story.image!, context: story.context!, isShowing: storyIsShowing)
