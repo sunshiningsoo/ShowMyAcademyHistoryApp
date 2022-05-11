@@ -52,11 +52,11 @@ struct WriteStoryView: View {
                 let someStory = Story(context: moc)
                 someStory.id = UUID()
                 someStory.title = title
-                someStory.image = imageName
+                someStory.image = imageName ?? "story"
                 chosenCon.append(contribute)
                 someStory.contribute = chosenCon
                 someStory.context = context
-                someStory.isShowing = false
+                someStory.isShowing = true
                 
                  try? moc.save()
                 // 위의 경우에는 DataController 객체를 환경설정되어 있는 곳에서 객체를 만든 후에 진행했고

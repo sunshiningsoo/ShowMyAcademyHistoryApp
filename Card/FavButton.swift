@@ -15,8 +15,8 @@ struct FavButton: View {
             isSet.toggle()
             print(isSet)
         }, label: {
-            Image(systemName: isSet ? "star" : "star.fill")
-                .foregroundColor(isSet ? .gray : .yellow)
+            Image(systemName: isSet ? "star.fill" : "star")
+                .foregroundColor(isSet ? .yellow : .gray)
         })
     }
 }

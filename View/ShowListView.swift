@@ -13,18 +13,19 @@ struct ShowListView: View {
     @ObservedObject var num:Num = Num()
     @State var showModal:Bool = false
     @State var id:UUID = UUID()
-    @State var storyIsShowing = false
     
     var body: some View {
         ScrollView{
             VStack(alignment: .leading) {
                 ForEach(storiesClass.storyArray, id:\.self){story in
-                    Button(action: {
-                        num.num = storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
-                        showModal.toggle()
-                    }, label: {
-                        RectangleCard(story: story)
-                    })
+                    if story.isShowing{
+                        Button(action: {
+                            num.num = storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
+                            showModal.toggle()
+                        }, label: {
+                            RectangleCard(story: story)
+                        })
+                    }
                 }
             }
             .fullScreenCover(isPresented: $showModal){
@@ -41,7 +42,7 @@ struct ShowListView: View {
     private func dataFetchFromCoredata() -> [StoryModel] {
         var tempStory: [StoryModel] = []
         for story in stories {
-            let new = StoryModel(id: story.id!, title: story.title!, contribute: story.contribute!, image: story.image!, context: story.context!, isShowing: storyIsShowing)
+            let new = StoryModel(id: story.id!, title: story.title!, contribute: story.contribute!, image: story.image!, context: story.context!, isShowing: story.isShowing)
             tempStory.append(new)
         }
         return tempStory
