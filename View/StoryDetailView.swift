@@ -8,17 +8,9 @@
 import SwiftUI
 
 struct StoryDetailView: View {
-    //    @Binding var storyTitle:String
-    //    @Binding var storyContribute:[String]
-    //    @Binding var storyImage:String
-    //    @Binding var storyContext:String
     
     @Binding var showModal:Bool
-//    @State var isSet:Bool = false
-    
     @State var story:StoryModel
-    
-    
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3 + 50
     
@@ -33,9 +25,7 @@ struct StoryDetailView: View {
                         HStack {
                             Text(story.title)
                                 .font(.largeTitle)
-                            
-//                            FavButton(isSet:$story.isShowing, story:story)
-                            
+                                                        
                             Button(action: {
                                 
                             }, label: {

@@ -11,21 +11,16 @@ struct ShowListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.image)]) var stories: FetchedResults<Story>
     @State var showModal:Bool = false
     @State var id:UUID = UUID()
-    @State var new:Int = 0
     @State var storyIsShowing = false
+    @ObservedObject var num:Num = Num()
     
     var body: some View {
         ScrollView{
             VStack(alignment: .leading) {
                 ForEach(stories, id:\.self){story in
                     Button(action: {
-                        print(new)
-                        new = storyArray.firstIndex(where: {$0.id == story.id})!
-                        print(new)
+                        num.num = storyArray.firstIndex(where: {$0.id == story.id})!
                         
-                        if storyArray.isEmpty{
-                            
-                        }
                         showModal.toggle()
                     }, label: {
                         RectangleCard(story: story)
@@ -33,25 +28,17 @@ struct ShowListView: View {
                 }
             }
             .fullScreenCover(isPresented: $showModal){
-//                StoryDetailView(showModal:$showModal, story:storyArray.last!)
-//                DispatchQueue.main.async {
-                    StoryDetailView(showModal:$showModal, story:storyArray[new])
-//            }
+                StoryDetailView(showModal:$showModal, story:storyArray[num.num])
             }
-            .task{
-                await storyArray = dataFetchFromCoredata()
+            .onAppear {
+                print("데이터 불러오는중")
+                storyArray = dataFetchFromCoredata()
+                print("데이터 불러왔음")
             }
-            
-//            .onAppear {
-//                print("데이터 불러오는중")
-//                storyArray = dataFetchFromCoredata()
-//                print("데이터 불러왔음")
-//            }
-            
         }
     }
     
-    private func dataFetchFromCoredata() async -> [StoryModel] {
+    private func dataFetchFromCoredata() -> [StoryModel] {
         var tempStory: [StoryModel] = []
         for story in stories {
             let new = StoryModel(id: story.id!, title: story.title!, contribute: story.contribute!, image: story.image!, context: story.context!, isShowing: storyIsShowing)

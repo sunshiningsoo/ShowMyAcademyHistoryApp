@@ -12,7 +12,13 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.title)]) var stories: FetchedResults<Story>
     @State private var tabName = "보여주기"
-    var tabList:[String] = ["보여주기", "내글보기"]    
+    var tabList:[String] = ["보여주기", "내글보기"]
+    
+    
+    @State var showModal:Bool = false
+    @State var id:UUID = UUID()
+    @State var new:Int = 0
+    @State var storyIsShowing = false
     
     var body: some View {
         VStack {
@@ -30,11 +36,9 @@ struct ContentView: View {
             else{
                 MyStoryView()
             }
-            
         }
 
     }
-    
 
 }
 

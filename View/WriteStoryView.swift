@@ -9,16 +9,13 @@ import SwiftUI
 
 struct WriteStoryView: View {
     @Environment(\.managedObjectContext) var moc
-//    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
-    @Binding var showModal:Bool
-    
-//    var randomImg:[String] = ["this", "newImg"]
     @State var imageName:String = ""
     @State var title:String = ""
     @State var chosenCon:[String] = []
-    var contributeList:[String] = ["개발", "기획", "디자인"]
     @State var contribute:String = "개발"
     @State var context:String = ""
+    @Binding var showModal:Bool
+    var contributeList:[String] = ["개발", "기획", "디자인"]
     
     var body: some View {
         VStack {
@@ -67,6 +64,7 @@ struct WriteStoryView: View {
                 
                 // try? DataController().container.viewContext.save()
                 // 위의 경우에는 직접 DataController 클래스를 이용해서 저장을 해주도록 한다.
+                // But 같은 객체가 아니기 때문에 서로 다른 객체에 저장하는 모습이다.
                 
                 showModal.toggle()
             }, label: {

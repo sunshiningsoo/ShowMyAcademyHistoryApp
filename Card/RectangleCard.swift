@@ -35,7 +35,8 @@ struct RectangleCard: View {
                         Spacer()
                     }
                     HStack {
-                        Text(story.contribute?.first ?? "")
+//                        Text(story.contribute?.first ?? "")
+                        Text(story.contribute!.first ?? "")
                             .font(.subheadline)
                             .foregroundColor(.white)
                         Spacer()

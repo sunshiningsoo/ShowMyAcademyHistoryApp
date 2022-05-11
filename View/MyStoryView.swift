@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MyStoryView: View {
-//    @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
     @State var showModal:Bool = false
     
