@@ -11,7 +11,7 @@ struct RectangleCard: View {
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3
     var CORNER_RADIUS = CGFloat(20)
-    var story:Story
+    var story:StoryModel
     
     var body: some View {
         ZStack {
@@ -20,7 +20,7 @@ struct RectangleCard: View {
                 .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                 .shadow(radius: CORNER_RADIUS, y:CORNER_RADIUS/2)
                 .opacity(0.8)
-            Image(story.image  ?? "")
+            Image(story.image)
                 .resizable()
                 .clipShape(RoundedRectangle(cornerRadius: CORNER_RADIUS))
                 .overlay(RoundedRectangle(cornerRadius: CORNER_RADIUS).stroke(Color.black, lineWidth:5).opacity(0.1))
@@ -29,14 +29,13 @@ struct RectangleCard: View {
             VStack{
                 VStack {
                     HStack{
-                        Text(story.title ?? "")
+                        Text(story.title)
                             .font(.title)
                             .foregroundColor(.white)
                         Spacer()
                     }
                     HStack {
-//                        Text(story.contribute?.first ?? "")
-                        Text(story.contribute!.first ?? "")
+                        Text(story.contribute.first ?? "")
                             .font(.subheadline)
                             .foregroundColor(.white)
                         Spacer()

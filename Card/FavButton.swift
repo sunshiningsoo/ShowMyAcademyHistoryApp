@@ -9,17 +9,14 @@ import SwiftUI
 
 struct FavButton: View {
     @Binding var isSet:Bool
-    var story:StoryModel
 
     var body: some View {
-
         Button(action: {
             isSet.toggle()
             print(isSet)
-//            story.isShowing.toggle()
         }, label: {
-            Image(systemName: story.isShowing == false ? "star" : "star.fill")
-                .foregroundColor(story.isShowing == false ? .gray : .yellow)
+            Image(systemName: isSet ? "star" : "star.fill")
+                .foregroundColor(isSet ? .gray : .yellow)
         })
     }
 }

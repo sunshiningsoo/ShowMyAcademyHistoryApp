@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct MyStoryView: View {
-    @FetchRequest(sortDescriptors: []) var stories: FetchedResults<Story>
+    @EnvironmentObject var storiesClass:StoriesClass
     @State var showModal:Bool = false
     
     var body: some View {
         ZStack {
             ScrollView {
-                ForEach(storyArray){story in
+                ForEach(storiesClass.storyArray){story in
                     Button(action: {
-//                        StoryDetailView(showModal: $showModal, story: storyArray.last!)
+
                     }, label: {
                         HStack {
                             Image(story.image)
@@ -76,5 +76,6 @@ struct MyStoryView: View {
 struct MyStoryView_Previews: PreviewProvider {
     static var previews: some View {
         MyStoryView()
+            .environmentObject(StoriesClass())
     }
 }

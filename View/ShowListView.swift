@@ -9,18 +9,18 @@ import SwiftUI
 
 struct ShowListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.image)]) var stories: FetchedResults<Story>
+    @EnvironmentObject var storiesClass:StoriesClass
+    @ObservedObject var num:Num = Num()
     @State var showModal:Bool = false
     @State var id:UUID = UUID()
     @State var storyIsShowing = false
-    @ObservedObject var num:Num = Num()
     
     var body: some View {
         ScrollView{
             VStack(alignment: .leading) {
-                ForEach(stories, id:\.self){story in
+                ForEach(storiesClass.storyArray, id:\.self){story in
                     Button(action: {
-                        num.num = storyArray.firstIndex(where: {$0.id == story.id})!
-                        
+                        num.num = storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
                         showModal.toggle()
                     }, label: {
                         RectangleCard(story: story)
@@ -28,11 +28,11 @@ struct ShowListView: View {
                 }
             }
             .fullScreenCover(isPresented: $showModal){
-                StoryDetailView(showModal:$showModal, story:storyArray[num.num])
+                StoryDetailView(showModal:$showModal, story:storiesClass.storyArray[num.num])
             }
             .onAppear {
                 print("데이터 불러오는중")
-                storyArray = dataFetchFromCoredata()
+                storiesClass.storyArray = dataFetchFromCoredata()
                 print("데이터 불러왔음")
             }
         }
@@ -51,5 +51,6 @@ struct ShowListView: View {
 struct RectangleCardViewInShow_Previews: PreviewProvider {
     static var previews: some View {
         ShowListView()
+            .environmentObject(StoriesClass())
     }
 }

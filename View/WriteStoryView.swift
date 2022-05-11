@@ -64,7 +64,7 @@ struct WriteStoryView: View {
                 
                 // try? DataController().container.viewContext.save()
                 // 위의 경우에는 직접 DataController 클래스를 이용해서 저장을 해주도록 한다.
-                // But 같은 객체가 아니기 때문에 서로 다른 객체에 저장하는 모습이다.
+                // But 같은 객체가 아니기 때문에 서로 다른 객체에 저장되는 모습이다.
                 
                 showModal.toggle()
             }, label: {

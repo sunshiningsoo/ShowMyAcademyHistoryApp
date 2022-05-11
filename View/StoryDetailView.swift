@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct StoryDetailView: View {
-    
+    @EnvironmentObject var storiesClass:StoriesClass
     @Binding var showModal:Bool
-    @State var story:StoryModel
+    var story:StoryModel
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3 + 50
+    
+    var storyIndex:Int {
+        storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
+    }
     
     var body: some View {
         ZStack {
@@ -25,20 +29,13 @@ struct StoryDetailView: View {
                         HStack {
                             Text(story.title)
                                 .font(.largeTitle)
-                                                        
-                            Button(action: {
-                                
-                            }, label: {
-                                Image(systemName: story.isShowing ? "star.fill" : "star")
-                                    .foregroundColor(story.isShowing ? .yellow : .gray)
-                            })
-                            
+                            FavButton(isSet: $storiesClass.storyArray[storyIndex].isShowing)
                             Spacer()
                         }
                         
                         HStack {
-                            ForEach(story.contribute, id:\.self){con in
-                                Text(con)
+                            ForEach(story.contribute, id:\.self){contribute in
+                                Text(contribute)
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                             }

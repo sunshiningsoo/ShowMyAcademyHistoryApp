@@ -8,4 +8,7 @@
 import Foundation
 import SwiftUI
 
-var storyArray:[StoryModel] = []
+
+class StoriesClass:ObservableObject{
+    @Published var storyArray:[StoryModel] = []
+}
