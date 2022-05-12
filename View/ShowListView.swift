@@ -20,7 +20,7 @@ struct ShowListView: View {
                 ForEach(storiesClass.storyArray, id:\.self){story in
                     if story.isShowing{
                         Button(action: {
-                            num.num = storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
+                            storiesClass.num = storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
                             showModal.toggle()
                         }, label: {
                             RectangleCard(story: story)
@@ -29,7 +29,7 @@ struct ShowListView: View {
                 }
             }
             .fullScreenCover(isPresented: $showModal){
-                StoryDetailView(showModal:$showModal, story:storiesClass.storyArray[num.num])
+                StoryDetailView(showModal:$showModal, story:storiesClass.storyArray[storiesClass.num])
             }
             .onAppear {
                 print("데이터 불러오는중")
