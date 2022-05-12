@@ -10,10 +10,6 @@ import CoreData
 
 struct ContentView: View {
     @State private var tabName = "보여주기"
-    @State var showModal:Bool = false
-    @State var id:UUID = UUID()
-    @State var new:Int = 0
-    @State var storyIsShowing = false
     var tabList:[String] = ["보여주기", "내글보기"]
     
     var body: some View {
