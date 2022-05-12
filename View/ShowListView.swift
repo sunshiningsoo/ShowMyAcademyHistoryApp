@@ -10,7 +10,6 @@ import SwiftUI
 struct ShowListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.image)]) var stories: FetchedResults<Story>
     @EnvironmentObject var storiesClass:StoriesClass
-    @ObservedObject var num:Num = Num()
     @State var showModal:Bool = false
     @State var id:UUID = UUID()
     

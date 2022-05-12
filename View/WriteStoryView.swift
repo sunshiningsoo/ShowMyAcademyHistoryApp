@@ -52,7 +52,7 @@ struct WriteStoryView: View {
                 let someStory = Story(context: moc)
                 someStory.id = UUID()
                 someStory.title = title
-                someStory.image = imageName ?? "story"
+                someStory.image = imageName
                 chosenCon.append(contribute)
                 someStory.contribute = chosenCon
                 someStory.context = context
