@@ -32,7 +32,6 @@ struct StoryDetailView: View {
                             FavButton(isSet: $storiesClass.storyArray[storyIndex].isShowing)
                             Spacer()
                         }
-                        
                         HStack {
                             ForEach(story.contribute, id:\.self){contribute in
                                 Text(contribute)
@@ -42,15 +41,11 @@ struct StoryDetailView: View {
                             Spacer()
                         }
                     }.padding()
-                    
                     Divider()
-                    
                     Text(story.context)
                         .padding()
-                    
                     Spacer()
                 }
-                
             }
             
             VStack{

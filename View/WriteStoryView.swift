@@ -31,7 +31,8 @@ struct WriteStoryView: View {
                         ForEach(contributeList, id:\.self){
                             Text($0)
                         }
-                    }.pickerStyle(SegmentedPickerStyle())
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
                 
                 Section{
@@ -47,7 +48,7 @@ struct WriteStoryView: View {
                 }
             }
             
-            
+            // # Challenge 사진을 사진앱에서 추가 할 수 있게 해주는 것이 다음 목표
             Button(action: {
                 let someStory = Story(context: moc)
                 someStory.id = UUID()
