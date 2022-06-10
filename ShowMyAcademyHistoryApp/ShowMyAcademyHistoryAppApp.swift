@@ -11,7 +11,7 @@ import CoreData
 @main
 struct ShowMyAcademyHistoryAppApp: App {
     @StateObject var dataController = DataController()
-    @StateObject var storiesClass:StoriesClass = StoriesClass()
+    @StateObject var storiesClass: StoriesClass = StoriesClass()
     
     var body: some Scene {
         WindowGroup {

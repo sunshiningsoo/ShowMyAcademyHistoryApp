@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MyStoryView: View {
-    @EnvironmentObject var storiesClass:StoriesClass
-    @State var showModal:Bool = false
+    @EnvironmentObject var storiesClass: StoriesClass
+    @State var showModal: Bool = false
     
     var body: some View {
         ZStack {

@@ -10,7 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @State private var tabName = "보여주기"
-    var tabList:[String] = ["보여주기", "내글보기"]
+    var tabList: [String] = ["보여주기", "내글보기"]
     
     var body: some View {
         VStack {

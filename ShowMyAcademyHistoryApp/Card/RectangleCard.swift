@@ -11,7 +11,7 @@ struct RectangleCard: View {
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3
     var CORNER_RADIUS = CGFloat(20)
-    var story:StoryModel
+    var story: StoryModel
     
     var body: some View {
         ZStack {
@@ -50,11 +50,3 @@ struct RectangleCard: View {
         }
     }
 }
-
-//struct RectangleCard_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        RectangleCard()
-//            .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3))
-//    }
-//}

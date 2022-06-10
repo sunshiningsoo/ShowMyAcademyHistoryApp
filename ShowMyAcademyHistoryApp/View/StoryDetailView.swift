@@ -9,12 +9,12 @@ import SwiftUI
 
 struct StoryDetailView: View {
     @EnvironmentObject var storiesClass:StoriesClass
-    @Binding var showModal:Bool
-    var story:StoryModel
+    @Binding var showModal: Bool
+    var story: StoryModel
     var CARD_WIDTH = UIScreen.main.bounds.width
     var CARD_HEIGHT = UIScreen.main.bounds.height/3 + 50
     
-    var storyIndex:Int {
+    var storyIndex: Int {
         storiesClass.storyArray.firstIndex(where: {$0.id == story.id})!
     }
     

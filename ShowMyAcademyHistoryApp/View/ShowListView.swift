@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ShowListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.image)]) var stories: FetchedResults<Story>
-    @EnvironmentObject var storiesClass:StoriesClass
-    @State var showModal:Bool = false
-    @State var id:UUID = UUID()
+    @EnvironmentObject var storiesClass: StoriesClass
+    @State var showModal: Bool = false
+    @State var id: UUID = UUID()
     
     var body: some View {
         ScrollView{

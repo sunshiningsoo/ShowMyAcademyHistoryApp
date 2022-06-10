@@ -9,13 +9,13 @@ import SwiftUI
 
 struct WriteStoryView: View {
     @Environment(\.managedObjectContext) var moc
-    @State var imageName:String = ""
-    @State var title:String = ""
-    @State var chosenCon:[String] = []
-    @State var contribute:String = "개발"
-    @State var context:String = ""
-    @Binding var showModal:Bool
-    var contributeList:[String] = ["개발", "기획", "디자인"]
+    @State var imageName: String = ""
+    @State var title: String = ""
+    @State var chosenCon: [String] = []
+    @State var contribute: String = "개발"
+    @State var context: String = ""
+    @Binding var showModal: Bool
+    var contributeList: [String] = ["개발", "기획", "디자인"]
     
     var body: some View {
         VStack {

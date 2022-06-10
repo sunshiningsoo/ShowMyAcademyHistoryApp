@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavButton: View {
-    @Binding var isSet:Bool
+    @Binding var isSet: Bool
 
     var body: some View {
         Button(action: {
